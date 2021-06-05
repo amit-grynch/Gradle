@@ -108,3 +108,32 @@ def echotIt2={ a,b,c ->
     }
     
     println echotIt2("amit","kumar","sharma")
+    
+ def echoIt3={10}
+ println(echoIt3)
+ 
+    def oneArgMethod(closure) {
+	closure() * 2
+}
+
+println oneArgMethod {10}
+
+
+
+def twoArgMethod(factor, closure){
+	closure() * factor
+}
+
+println twoArgMethod(3, {10})
+
+twoArgMethod 5, {20}
+
+
+//common uses for closure ... iterators!
+for (int j in [1,2,3]){
+	println j
+}
+
+[1,2,3].each {
+	println it
+}
