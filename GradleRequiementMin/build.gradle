@@ -137,3 +137,56 @@ for (int j in [1,2,3]){
 [1,2,3].each {
 	println it
 }
+
+
+// Closure resolution
+
+
+
+class Person1 {                       
+
+    String name = "Fred"                     
+    
+	Closure nameSayer = {
+		println name
+	}
+}
+
+def p1 = new Person1()
+p1.nameSayer()
+
+// Closed over a context
+def theName = "John"
+def sayName = {
+	println theName
+}
+sayName()
+theName = "Fred"
+sayName()
+
+
+
+class Person2 {                       
+
+    String theName                      
+    Integer theAge
+    
+   
+     Person2(theName, theAge) {          
+        this.theName = theName
+        this.theAge = theAge
+    }
+
+
+	def executeInside(Closure c){
+		c.delegate = this
+		c()
+	}
+
+}
+
+def p2 = new Person2("Fred", 35)
+println p2.theName
+
+p2.executeInside {println theName}
+
